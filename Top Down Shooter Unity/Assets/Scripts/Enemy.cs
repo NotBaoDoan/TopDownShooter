@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] Transform player;
+    Transform playerTransform;
     [SerializeField] float moveSpeed = 3f;
     Rigidbody2D rb;
     Vector2 direction;
@@ -11,14 +11,15 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerTransform = GameObject.FindWithTag("Player").transform;
     }
-
+     
     // Update is called once per frame
     void Update()
     {
-        if (player != null)
+        if (playerTransform != null)
         {
-            direction = (player.position - transform.position).normalized;
+            direction = (playerTransform.position - transform.position).normalized;
         }
     }
     void FixedUpdate()

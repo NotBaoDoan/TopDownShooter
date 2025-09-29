@@ -8,11 +8,14 @@ public class PlayerScript : MonoBehaviour
     Rigidbody2D rb;
     Vector2 moveInput;
     Vector2 screenBoundary;
+    [SerializeField] int playerHealth = 5;
+    [SerializeField] float invincibleTime = 3f;
     [SerializeField] float moveSpeed = 3;
     [SerializeField] float rotationSpeed = 700f;
     [SerializeField] float bulletSpeed = 7f;
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject gun;
+    bool invincible;
     float targetAngle;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -53,11 +56,25 @@ public class PlayerScript : MonoBehaviour
         rb.MoveRotation(rotation);
     }
 
+    void ResetInvincibility()
+    {
+        invincible = false;
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemies"))
+        if (collision.gameObject.CompareTag("Enemies") && !invincible)
         {
-            Destroy(gameObject);
+            if (playerHealth <= 1)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                playerHealth--;
+                invincible = true;
+                Invoke("ResetInvincibility", invincibleTime);
+                Debug.Log("Player health: " + playerHealth);
+            }
         }
     }
 }
