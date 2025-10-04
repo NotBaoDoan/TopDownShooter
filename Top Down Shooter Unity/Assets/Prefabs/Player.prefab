@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 895480159636974245}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.12, y: 0.45, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 0.14901137, y: 0.599265, z: 4.0445423}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -197,6 +197,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 093270be4d95a2d43aa438b0e38e6079, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScript
+  playerHealth: 5
+  invincibleTime: 3
   moveSpeed: 5
   rotationSpeed: 700
   bulletSpeed: 7
